@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v10.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v10.0": {
+      "blogmanager_NguyenMinhQuan/1.0.0": {
+        "runtime": {
+          "blogmanager_NguyenMinhQuan.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "blogmanager_NguyenMinhQuan/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
