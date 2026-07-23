@@ -1,8 +1,31 @@
 <h1>Thử nghiệm C# và LINQ</h1>
 <p>Số bài viết đã xuất bản: <strong>@ViewBag.SoDaXuatBan</strong></p>
 <ul>
-    @foreach (var tieuDe in ViewBag.TieuDe)
-    {
-        <li>@tieuDe</li>
-    }
+@foreach (Post post in ViewBag.BaiViet)
+{
+    <li>
+        @post.Title
+
+        @if (post.NhanPhoBien == "Phổ biến")
+        {
+            <span style="background:red;
+                         color:white;
+                         padding:2px 8px;
+                         border-radius:10px;
+                         margin-left:5px;">
+                @post.NhanPhoBien
+            </span>
+        }
+        else
+        {
+            <span style="background:gray;
+                         color:white;
+                         padding:2px 8px;
+                         border-radius:10px;
+                         margin-left:5px;">
+                @post.NhanPhoBien
+            </span>
+        }
+    </li>
+}
 </ul>

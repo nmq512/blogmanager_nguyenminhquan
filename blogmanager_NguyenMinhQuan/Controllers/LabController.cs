@@ -17,11 +17,11 @@ public class LabController : Controller
             },
             new Post
             {
-                Id = 3, Title = "EF Core", IsPublished = true, ViewCount=750
+                Id = 3, Title = "EF Core", IsPublished = true, ViewCount=75
             },
             new Post
             {
-                Id = 4, Title = "Blazor", IsPublished = false, ViewCount=300
+                Id = 4, Title = "Blazor", IsPublished = false, ViewCount=30
             },
             new Post
             {
@@ -29,7 +29,7 @@ public class LabController : Controller
             }
         };
         ViewBag.SoDaXuatBan = baiViet.Count(p => p.IsPublished);
-        ViewBag.TieuDe=baiViet.Where(p => p.IsPublished).OrderBy(p => p.Title).Select(p => p.Title).ToList();
+        ViewBag.BaiViet = baiViet.Where(p => p.IsPublished).OrderBy(p => p.Title).ToList();
         return View();
     }
     public IActionResult CountView()
@@ -42,7 +42,7 @@ public class LabController : Controller
             },
             new Post
             {
-                Id = 2, Title = "MVC nhập môn", IsPublished = false, ViewCount=500
+                Id = 2, Title = "MVC nhập môn", IsPublished = false, ViewCount=50
             },
             new Post
             {
@@ -50,15 +50,15 @@ public class LabController : Controller
             },
             new Post
             {
-                Id = 4, Title = "Blazor", IsPublished = false, ViewCount=300
+                Id = 4, Title = "Blazor", IsPublished = false, ViewCount=30
             },
             new Post
             {
-                Id = 5, Title = "ASP.NET Core", IsPublished = true, ViewCount=1200
+                Id = 5, Title = "ASP.NET Core", IsPublished = true, ViewCount=120
             }
         };
         ViewBag.TongLuotXem = baiViet.Sum(p => p.ViewCount);
-        ViewBag.TieuDe = baiViet.Where(p => p.IsPublished).OrderBy(p => p.ViewCount).Select(p => p.Title).ToList();
+        ViewBag.BaiViet = baiViet.Where(p => p.IsPublished).OrderBy(p => p.ViewCount).ToList();
         ViewBag.SoNhieuViewNhat = baiViet.Max(p => p.ViewCount);
         ViewBag.TieuDeNhieuViewNhat = baiViet.Where(p => p.ViewCount == baiViet.Max(p => p.ViewCount)).Select(p => p.Title).ToList();  
         return View();

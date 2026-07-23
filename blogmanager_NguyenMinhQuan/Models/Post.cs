@@ -9,6 +9,7 @@ namespace blogmanager_NguyenMinhQuan.Models
         public bool IsPublished { get; set; }
         public string Author { get; set; }=string.Empty;
         public int ViewCount { get; set; }
+        public string NhanPhoBien => ViewCount >= 100 ? "Phổ biến" : "Thường";
         public string MoTaNgan() => $"{Title} ({PublishedAt:dd/MM/yyyy})";
     }
 }
