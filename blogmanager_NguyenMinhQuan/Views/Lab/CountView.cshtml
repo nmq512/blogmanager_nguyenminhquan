@@ -1,0 +1,9 @@
+<h1>Thống kê lượt xem</h1>
+<p>Tổng số lượt xem: <strong>@ViewBag.TongLuotXem</strong></p>
+<p>Bài viết có nhiều lượt xem nhất: <strong>@ViewBag.SoNhieuViewNhat</strong></p>
+<ul>
+    @foreach (var tieuDe in ViewBag.TieuDeNhieuViewNhat)
+    {
+        <li>@tieuDe</li>
+    }
+</ul>
