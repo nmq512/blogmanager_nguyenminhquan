@@ -95,3 +95,4 @@ D:\LapTrinhWeb_2026\blogmanager_nguyenminhquan\blogmanager_NguyenMinhQuan\obj\De
 D:\LapTrinhWeb_2026\blogmanager_nguyenminhquan\blogmanager_NguyenMinhQuan\obj\Debug\net10.0\blogmanager_NguyenMinhQuan.pdb
 D:\LapTrinhWeb_2026\blogmanager_nguyenminhquan\blogmanager_NguyenMinhQuan\obj\Debug\net10.0\blogmanager_NguyenMinhQuan.genruntimeconfig.cache
 D:\LapTrinhWeb_2026\blogmanager_nguyenminhquan\blogmanager_NguyenMinhQuan\obj\Debug\net10.0\ref\blogmanager_NguyenMinhQuan.dll
+D:\LapTrinhWeb_2026\blogmanager_nguyenminhquan\blogmanager_NguyenMinhQuan\obj\Debug\net10.0\blogmanager_NguyenMinhQuan.sourcelink.json
