@@ -1,19 +1,19 @@
 <h1>Thử nghiệm C# và LINQ</h1>
 <p>Số bài viết đã xuất bản: <strong>@ViewBag.SoDaXuatBan</strong></p>
 <ul>
-@foreach (Post post in ViewBag.BaiViet)
+@foreach (Post baiviet in ViewBag.BaiViet)
 {
     <li>
-        @post.Title
+        @baiviet.Title
 
-        @if (post.NhanPhoBien == "Phổ biến")
+        @if (baiviet.NhanPhoBien == "Phổ biến")
         {
             <span style="background:red;
                          color:white;
                          padding:2px 8px;
                          border-radius:10px;
                          margin-left:5px;">
-                @post.NhanPhoBien
+                @baiviet.NhanPhoBien
             </span>
         }
         else
@@ -23,7 +23,7 @@
                          padding:2px 8px;
                          border-radius:10px;
                          margin-left:5px;">
-                @post.NhanPhoBien
+                @baiviet.NhanPhoBien
             </span>
         }
     </li>

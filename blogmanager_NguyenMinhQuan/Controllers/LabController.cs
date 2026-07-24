@@ -25,7 +25,7 @@ public class LabController : Controller
             },
             new Post
             {
-                Id = 5, Title = "ASP.NET Core", IsPublished = true, ViewCount=1200
+                Id = 5, Title = "ASP.NET Core", IsPublished = true, ViewCount=12
             }
         };
         ViewBag.SoDaXuatBan = baiViet.Count(p => p.IsPublished);
@@ -46,7 +46,7 @@ public class LabController : Controller
             },
             new Post
             {
-                Id = 3, Title = "EF Core", IsPublished = true, ViewCount=750
+                Id = 3, Title = "EF Core", IsPublished = true, ViewCount=75
             },
             new Post
             {
