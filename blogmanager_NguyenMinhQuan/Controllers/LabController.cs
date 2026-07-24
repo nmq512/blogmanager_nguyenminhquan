@@ -38,7 +38,7 @@ public class LabController : Controller
         {
             new Post
             {
-                Id = 1, Title = "C# cơ bản", IsPublished = true, ViewCount=1000
+                Id = 1, Title = "C# cơ bản", IsPublished = true, ViewCount=10
             },
             new Post
             {
@@ -59,8 +59,8 @@ public class LabController : Controller
         };
         ViewBag.TongLuotXem = baiViet.Sum(p => p.ViewCount);
         ViewBag.BaiViet = baiViet.Where(p => p.IsPublished).OrderBy(p => p.ViewCount).ToList();
-        ViewBag.SoNhieuViewNhat = baiViet.Max(p => p.ViewCount);
-        ViewBag.TieuDeNhieuViewNhat = baiViet.Where(p => p.ViewCount == baiViet.Max(p => p.ViewCount)).Select(p => p.Title).ToList();  
+        var baiVietNhieuViewNhat = baiViet.OrderByDescending(p => p.ViewCount).First();
+        ViewBag.BaiVietNhieuViewNhat = baiVietNhieuViewNhat;  
         return View();
     }
 }

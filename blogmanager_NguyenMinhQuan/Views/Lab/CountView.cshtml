@@ -1,32 +1,21 @@
 <h1>Thống kê lượt xem</h1>
 <p>Tổng số lượt xem: <strong>@ViewBag.TongLuotXem</strong></p>
-<p>Bài viết có nhiều lượt xem nhất: <strong>@ViewBag.SoNhieuViewNhat</strong></p>
-<ul>
-@foreach (Post post in ViewBag.BaiViet)
-{
-    <li>
-        @post.Title
+<p>
+    Bài viết có nhiều lượt xem nhất:
+    <strong>@ViewBag.BaiVietNhieuViewNhat.Title</strong>
 
-        @if (post.NhanPhoBien == "Phổ biến")
-        {
-            <span style="background:red;
-                         color:white;
-                         padding:2px 8px;
-                         border-radius:10px;
-                         margin-left:5px;">
-                @post.NhanPhoBien
-            </span>
-        }
-        else
-        {
-            <span style="background:gray;
-                         color:white;
-                         padding:2px 8px;
-                         border-radius:10px;
-                         margin-left:5px;">
-                @post.NhanPhoBien
-            </span>
-        }
-    </li>
-}
-</ul>
+    @if (ViewBag.BaiVietNhieuViewNhat.NhanPhoBien == "Phổ biến")
+    {
+        <span style="background:red;color:white;padding:2px 8px;border-radius:10px;">
+            @ViewBag.BaiVietNhieuViewNhat.NhanPhoBien
+        </span>
+    }
+    else
+    {
+        <span style="background:gray;color:white;padding:2px 8px;border-radius:10px;">
+            @ViewBag.BaiVietNhieuViewNhat.NhanPhoBien
+        </span>
+    }
+
+    (@ViewBag.BaiVietNhieuViewNhat.ViewCount lượt xem)
+</p>
