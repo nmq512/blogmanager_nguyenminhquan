@@ -9,23 +9,23 @@ public class LabController : Controller
         {
             new Post
             {
-                Id = 1, Title = "C# cơ bản", IsPublished = true, ViewCount=1000
+                Id = 1, Title = "C# cơ bản", IsPublished = true, ViewCount=1000, Author = "Nguyễn Phương"
             },
             new Post
             {
-                Id = 2, Title = "MVC nhập môn", IsPublished = false, ViewCount=500
+                Id = 2, Title = "MVC nhập môn", IsPublished = false, ViewCount=500, Author = "Nguyễn Trung"
             },
             new Post
             {
-                Id = 3, Title = "EF Core", IsPublished = true, ViewCount=75
+                Id = 3, Title = "EF Core", IsPublished = true, ViewCount=75, Author = "Đặng Anh Quân"
             },
             new Post
             {
-                Id = 4, Title = "Blazor", IsPublished = false, ViewCount=30
+                Id = 4, Title = "Blazor", IsPublished = false, ViewCount=30, Author = "Hồng Trung Việt"
             },
             new Post
             {
-                Id = 5, Title = "ASP.NET Core", IsPublished = true, ViewCount=12
+                Id = 5, Title = "ASP.NET Core", IsPublished = true, ViewCount=12, Author = "Nguyễn Minh Quân"
             }
         };
         ViewBag.SoDaXuatBan = baiViet.Count(p => p.IsPublished);
@@ -38,23 +38,23 @@ public class LabController : Controller
         {
             new Post
             {
-                Id = 1, Title = "C# cơ bản", IsPublished = true, ViewCount=10
+                Id = 1, Title = "C# cơ bản", IsPublished = true, ViewCount=10, Author = "Nguyễn Phương"
             },
             new Post
             {
-                Id = 2, Title = "MVC nhập môn", IsPublished = false, ViewCount=50
+                Id = 2, Title = "MVC nhập môn", IsPublished = false, ViewCount=50, Author = "Nguyễn Trung"
             },
             new Post
             {
-                Id = 3, Title = "EF Core", IsPublished = true, ViewCount=75
+                Id = 3, Title = "EF Core", IsPublished = true, ViewCount=75, Author = "Đặng Anh Quân"
             },
             new Post
             {
-                Id = 4, Title = "Blazor", IsPublished = false, ViewCount=30
+                Id = 4, Title = "Blazor", IsPublished = false, ViewCount=30, Author = "Hồng Trung Việt"
             },
             new Post
             {
-                Id = 5, Title = "ASP.NET Core", IsPublished = true, ViewCount=120
+                Id = 5, Title = "ASP.NET Core", IsPublished = true, ViewCount=120, Author = "Nguyễn Minh Quân"
             }
         };
         ViewBag.TongLuotXem = baiViet.Sum(p => p.ViewCount);

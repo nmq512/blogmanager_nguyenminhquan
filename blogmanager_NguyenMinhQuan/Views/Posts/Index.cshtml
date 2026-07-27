@@ -1,0 +1,28 @@
+@using blogmanager_NguyenMinhQuan.Models;
+@model List<Post>
+<h1>Danh sách bài viết</h1>
+@if (!Model.Any())
+{
+    <p>Không có bài viết nào.</p>
+}
+else
+{
+    <table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Tiêu đề</th>
+            <th>Tác giả</th>
+            <th>Ngày xuất bản</th>
+            <th>Trạng thái</th>
+            <th>Hành động</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var baiviet in Model)
+        {
+            <partial name="_PostRow" model="baiviet" />
+        }
+    </tbody>
+    </table>
+}
+
