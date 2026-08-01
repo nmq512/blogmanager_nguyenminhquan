@@ -21,7 +21,7 @@ namespace Blogmanager_NguyenMinhQuan.Data
                     Id = 1,
                     Title = "Giới thiệu ASP.NET Core",
                     Content = "Đây là bài viết đầu tiên.",
-                    Author = "Nguyễn Minh Quân",
+                    Author = "Nguyễn Trung",
                     PublishedAt = new DateTime(2026, 8, 1),
                     IsPublished = true,
                     ViewCount = 120
@@ -41,7 +41,7 @@ namespace Blogmanager_NguyenMinhQuan.Data
                     Id = 3,
                     Title = "Razor View",
                     Content = "Sử dụng Razor để hiển thị dữ liệu.",
-                    Author = "Admin",
+                    Author = "Hồng Trung Việt",
                     PublishedAt = new DateTime(2026, 8, 3),
                     IsPublished = false,
                     ViewCount = 60
