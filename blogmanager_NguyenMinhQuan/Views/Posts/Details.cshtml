@@ -2,7 +2,7 @@
 @model Post
 
 <h1>@Model.Title</h1>
-<p>Tác giả: @Model.Author</p
+<p>Tác giả: @Model.Author</p>
 <p>Ngày xuất bản: @Model.PublishedAt.ToString("dd/MM/yyyy")</p>
 <p>Lượt xem: @Model.ViewCount</p>
 <p>Trạng thái: @(Model.IsPublished ? "Đã xuất bản" : "Chưa xuất bản")</p>
