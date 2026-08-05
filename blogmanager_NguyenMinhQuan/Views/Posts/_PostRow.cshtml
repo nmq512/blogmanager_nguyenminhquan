@@ -7,5 +7,7 @@
     <td>@(Model.IsPublished ? "Đã xuất bản" : "Bản nháp")</td>
     <td>
         <a asp-controller="Posts" asp-action="Details" asp-route-id="@Model.Id">Xem chi tiết</a>
+        <a asp-controller="Posts" asp-action="Edit" asp-route-id="@Model.Id">Sửa</a>
+        <a asp-controller="Posts" asp-action="Delete" asp-route-id="@Model.Id">Xóa</a>
     </td>
 </tr>

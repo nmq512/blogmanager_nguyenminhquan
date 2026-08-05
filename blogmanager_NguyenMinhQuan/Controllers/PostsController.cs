@@ -1,49 +1,74 @@
 using blogmanager_NguyenMinhQuan.Models;
+using Blogmanager_NguyenMinhQuan.Data;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 public class PostsController : Controller
 {
-    List<Post> getListPost()
+    private readonly ApplicationDbContext _context;
+    public PostsController(ApplicationDbContext context)
     {
-         var posts = new List<Post>
-        {
-            new Post
-            {
-                Id = 1, Title = "C# cơ bản", IsPublished = true, ViewCount=1000, Author = "Nguyễn Phương"
-            },
-            new Post
-            {
-                Id = 2, Title = "MVC nhập môn", IsPublished = false, ViewCount=500, Author = "Nguyễn Trung"
-            },
-            new Post
-            {
-                Id = 3, Title = "EF Core", IsPublished = true, ViewCount=75, Author = "Đặng Anh Quân"
-            },
-            new Post
-            {
-                Id = 4, Title = "Blazor", IsPublished = false, ViewCount=30, Author = "Hồng Trung Việt"
-            },
-            new Post
-            {
-                Id = 5, Title = "ASP.NET Core", IsPublished = true, ViewCount=12, Author = "Nguyễn Minh Quân"
-            }
-        };
-        return posts;
+        _context = context;
     }
-    public IActionResult Index()
+    public async Task<IActionResult> Index()
     {
-        var posts = getListPost();
-        ViewData["Title"] = "Danh sách bài viết";
-        ViewBag.PublishedCount = posts.Count(p => p.IsPublished);
+        var posts = await _context.Posts.OrderByDescending(p => p.PublishedAt).ToListAsync();
         return View(posts);
     }
-    public IActionResult Details(int id)
+    public async Task<IActionResult> Details(int id)
     {
-        var posts = getListPost();
-        var post = posts.Where(p => p.Id==id).FirstOrDefault();
-        if (post != null)
+        var post = await _context.Posts.FindAsync(id);
+        if (post == null) return NotFound();
+        return View(post);
+    }
+    public IActionResult Create()=> View();
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Create(Post post)
+    {
+        if (!ModelState.IsValid)
             return View(post);
-        else
+
+        _context.Posts.Add(post);
+        await _context.SaveChangesAsync();
+        return RedirectToAction(nameof(Index));
+    }
+    public async Task<IActionResult> Edit(int id)
+    {
+        var post = await _context.Posts.FindAsync(id);
+        if (post == null) return NotFound();
+        return View(post);
+    }
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Edit(int id, Post post)
+    {
+        if (id != post.Id) return NotFound();
+        if (!ModelState.IsValid) return View(post);
+
+        _context.Update(post);
+        await _context.SaveChangesAsync();
+        return RedirectToAction(nameof(Index));
+    }
+    public async Task<IActionResult> Delete(int id)
+    {
+        var post = await _context.Posts.FindAsync(id);
+
+        if (post == null)
             return NotFound();
+
+        return View(post);
+    }
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> DeleteConfirmed(int id)
+    {
+        var post = await _context.Posts.FindAsync(id);
+        if (post != null)
+        {
+            _context.Posts.Remove(post);
+            await _context.SaveChangesAsync();
+        }
+        return RedirectToAction(nameof(Index));
     }
 }

@@ -1,0 +1,52 @@
+@model blogmanager_NguyenMinhQuan.Models.Post
+
+@{
+    ViewData["Title"] = "Xóa bài viết";
+}
+
+<h2>Xóa bài viết</h2>
+
+<div class="alert alert-danger">
+    Bạn có chắc chắn muốn xóa bài viết này không?
+</div>
+
+<table class="table table-bordered">
+    <tr>
+        <th>Tiêu đề</th>
+        <td>@Model.Title</td>
+    </tr>
+
+    <tr>
+        <th>Tác giả</th>
+        <td>@Model.Author</td>
+    </tr>
+
+    <tr>
+        <th>Ngày đăng</th>
+        <td>@Model.PublishedAt.ToString("dd/MM/yyyy")</td>
+    </tr>
+
+    <tr>
+        <th>Lượt xem</th>
+        <td>@Model.ViewCount</td>
+    </tr>
+
+    <tr>
+        <th>Đã xuất bản</th>
+        <td>@(Model.IsPublished ? "Có" : "Chưa")</td>
+    </tr>
+</table>
+
+<form asp-action="DeleteConfirmed">
+
+    <input type="hidden" asp-for="Id" />
+
+    <button type="submit" class="btn btn-danger">
+        Xóa
+    </button>
+
+    <a asp-action="Index" class="btn btn-secondary">
+        Hủy
+    </a>
+
+</form>
