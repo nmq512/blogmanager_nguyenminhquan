@@ -4,49 +4,98 @@
     ViewData["Title"] = "Xóa bài viết";
 }
 
-<h2>Xóa bài viết</h2>
+<div class="container mt-4">
 
-<div class="alert alert-danger">
-    Bạn có chắc chắn muốn xóa bài viết này không?
+    <div class="card border-danger shadow">
+
+        <div class="card-header bg-danger text-white">
+            <h3>
+                <i class="bi bi-trash-fill"></i>
+                Xóa bài viết
+            </h3>
+        </div>
+
+        <div class="card-body">
+
+            <div class="alert alert-warning">
+                <i class="bi bi-exclamation-triangle-fill"></i>
+                Bạn có chắc chắn muốn xóa bài viết này không?
+            </div>
+
+            <table class="table table-bordered">
+
+                <tr>
+                    <th style="width:200px">ID</th>
+                    <td>@Model.Id</td>
+                </tr>
+
+                <tr>
+                    <th>Tiêu đề</th>
+                    <td>@Model.Title</td>
+                </tr>
+
+                <tr>
+                    <th>Nội dung</th>
+                    <td>@Model.Content</td>
+                </tr>
+
+                <tr>
+                    <th>Tác giả</th>
+                    <td>@Model.Author</td>
+                </tr>
+
+                <tr>
+                    <th>Ngày đăng</th>
+                    <td>@Model.PublishedAt.ToString("dd/MM/yyyy")</td>
+                </tr>
+
+                <tr>
+                    <th>Lượt xem</th>
+                    <td>
+                        <span class="badge bg-info">
+                            @Model.ViewCount
+                        </span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>Trạng thái</th>
+                    <td>
+                        @if (Model.IsPublished)
+                        {
+                            <span class="badge bg-success">
+                                Đã xuất bản
+                            </span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-secondary">
+                                Bản nháp
+                            </span>
+                        }
+                    </td>
+                </tr>
+
+            </table>
+
+            <form asp-action="DeleteConfirmed" method="post">
+
+                <input type="hidden" asp-for="Id" />
+
+                <button type="submit" class="btn btn-danger">
+                    <i class="bi bi-trash"></i>
+                    Xóa
+                </button>
+
+                <a asp-action="Index" class="btn btn-secondary">
+                    <i class="bi bi-arrow-left"></i>
+                    Hủy
+                </a>
+
+            </form>
+
+        </div>
+
+    </div>
+
 </div>
-
-<table class="table table-bordered">
-    <tr>
-        <th>Tiêu đề</th>
-        <td>@Model.Title</td>
-    </tr>
-
-    <tr>
-        <th>Tác giả</th>
-        <td>@Model.Author</td>
-    </tr>
-
-    <tr>
-        <th>Ngày đăng</th>
-        <td>@Model.PublishedAt.ToString("dd/MM/yyyy")</td>
-    </tr>
-
-    <tr>
-        <th>Lượt xem</th>
-        <td>@Model.ViewCount</td>
-    </tr>
-
-    <tr>
-        <th>Đã xuất bản</th>
-        <td>@(Model.IsPublished ? "Có" : "Chưa")</td>
-    </tr>
-</table>
-
-<form asp-action="DeleteConfirmed">
-
-    <input type="hidden" asp-for="Id" />
-
-    <button type="submit" class="btn btn-danger">
-        Xóa
-    </button>
-
-    <a asp-action="Index" class="btn btn-secondary">
-        Hủy
-    </a>
-
-</form>

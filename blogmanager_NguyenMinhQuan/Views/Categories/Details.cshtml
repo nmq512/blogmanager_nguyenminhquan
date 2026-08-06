@@ -10,7 +10,7 @@
 
         <div class="card-header bg-info text-white">
             <h3>
-                <i class="bi bi-info-circle"></i>
+                <i class="bi bi-file-earmark-text"></i>
                 Chi tiết danh mục
             </h3>
         </div>
@@ -20,7 +20,7 @@
             <table class="table table-bordered">
 
                 <tr>
-                    <th style="width:180px">ID</th>
+                    <th style="width:200px">ID</th>
                     <td>@Model.Id</td>
                 </tr>
 
@@ -32,6 +32,7 @@
             </table>
 
             <div class="mt-3">
+
                 <a asp-action="Edit"
                    asp-route-id="@Model.Id"
                    class="btn btn-warning">
@@ -51,6 +52,7 @@
                     <i class="bi bi-arrow-left"></i>
                     Quay lại
                 </a>
+
             </div>
 
         </div>

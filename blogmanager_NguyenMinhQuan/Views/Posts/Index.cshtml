@@ -1,81 +1,137 @@
 @model PostListViewModel
-<h1>Danh sách bài viết</h1>
-<a asp-action="Create" class="btn btn-primary mb-3">Tạo bài viết mới</a>
-<form asp-action="Index" method="get" class="row g-2 mb-3">
-    <div class="col-auto">
-        <input name="search" value="@Context.Request.Query["search"]" class="form-control" placeholder="Tìm kiếm bài viết..." />
-    </div>
-    <div class="col-auto">
-        <button type="submit" class="btn btn-primary">Tìm kiếm</button>
-    </div>
-</form>
-@if (!Model.Posts.Any())
-{
-    <p>Không có bài viết nào.</p>
+
+@{
+    ViewData["Title"] = "Danh sách bài viết";
 }
-else
-{
-    <table class="table table-striped">
-    <thead>
-        <tr>
-            <th>Tiêu đề</th>
-            <th>Tác giả</th>
-            <th>Ngày xuất bản</th>
-            <th>Trạng thái</th>
-            <th>Hành động</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var baiviet in Model.Posts)
-        {
-            <partial name="_PostRow" model="baiviet" />
-        }
-    </tbody>
-    </table>
-}
-<nav>
-    <ul class="pagination justify-content-center">
 
-        @if (Model.CurrentPage > 1)
-        {
-            <li class="page-item">
-                <a class="page-link"
-                   asp-action="Index"
-                   asp-route-page="@(Model.CurrentPage - 1)"
-                   asp-route-search="@Model.Search">
-                    Previous
-                </a>
-            </li>
-        }
+<div class="container mt-4">
 
-        @for (int i = 1; i <= Model.TotalPages; i++)
-        {
-            <li class="page-item @(i == Model.CurrentPage ? "active" : "")">
+    <div class="card shadow">
 
-                <a class="page-link"
-                   asp-action="Index"
-                   asp-route-page="@i"
-                   asp-route-search="@Model.Search">
+        <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+            <h3 class="mb-0">
+                <i class="bi bi-journal-text"></i>
+                Danh sách bài viết
+            </h3>
 
-                    @i
+            <a asp-action="Create" class="btn btn-light">
+                <i class="bi bi-plus-circle"></i>
+                Thêm bài viết
+            </a>
+        </div>
 
-                </a>
+        <div class="card-body">
 
-            </li>
-        }
+            <!-- Form tìm kiếm -->
+            <form asp-action="Index" method="get" class="row g-2 mb-4">
 
-        @if (Model.CurrentPage < Model.TotalPages)
-        {
-            <li class="page-item">
-                <a class="page-link"
-                   asp-action="Index"
-                   asp-route-page="@(Model.CurrentPage + 1)"
-                   asp-route-search="@Model.Search">
-                    Next
-                </a>
-            </li>
-        }
+                <div class="col-md-4">
+                    <input name="search"
+                           value="@Model.Search"
+                           class="form-control"
+                           placeholder="Nhập tiêu đề bài viết..." />
+                </div>
 
-    </ul>
-</nav>
+                <div class="col-auto">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="bi bi-search"></i>
+                        Tìm kiếm
+                    </button>
+                </div>
 
+                @if (!string.IsNullOrWhiteSpace(Model.Search))
+                {
+                    <div class="col-auto">
+                        <a asp-action="Index" class="btn btn-secondary">
+                            <i class="bi bi-arrow-clockwise"></i>
+                            Làm mới
+                        </a>
+                    </div>
+                }
+
+            </form>
+
+            @if (!Model.Posts.Any())
+            {
+                <div class="alert alert-warning">
+                    <i class="bi bi-exclamation-circle"></i>
+                    Không có bài viết nào.
+                </div>
+            }
+            else
+            {
+                <table class="table table-hover table-bordered align-middle">
+
+                    <thead class="table-dark">
+
+                        <tr class="text-center">
+                            <th style="width:70px">ID</th>
+                            <th>Tiêu đề</th>
+                            <th>Tác giả</th>
+                            <th style="width:150px">Ngày đăng</th>
+                            <th style="width:140px">Trạng thái</th>
+                            <th style="width:170px">Thao tác</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        @foreach (var baiviet in Model.Posts)
+                        {
+                            <partial name="_PostRow" model="baiviet" />
+                        }
+
+                    </tbody>
+
+                </table>
+            }
+
+            @if (Model.TotalPages > 1)
+            {
+                <nav>
+
+                    <ul class="pagination justify-content-center mb-0">
+
+                        <li class="page-item @(Model.CurrentPage == 1 ? "disabled" : "")">
+                            <a class="page-link"
+                               asp-action="Index"
+                               asp-route-page="@(Model.CurrentPage - 1)"
+                               asp-route-search="@Model.Search">
+                                <i class="bi bi-chevron-left"></i>
+                            </a>
+                        </li>
+
+                        @for (int i = 1; i <= Model.TotalPages; i++)
+                        {
+                            <li class="page-item @(i == Model.CurrentPage ? "active" : "")">
+
+                                <a class="page-link"
+                                   asp-action="Index"
+                                   asp-route-page="@i"
+                                   asp-route-search="@Model.Search">
+                                    @i
+                                </a>
+
+                            </li>
+                        }
+
+                        <li class="page-item @(Model.CurrentPage == Model.TotalPages ? "disabled" : "")">
+                            <a class="page-link"
+                               asp-action="Index"
+                               asp-route-page="@(Model.CurrentPage + 1)"
+                               asp-route-search="@Model.Search">
+                                <i class="bi bi-chevron-right"></i>
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </nav>
+            }
+
+        </div>
+
+    </div>
+
+</div>
