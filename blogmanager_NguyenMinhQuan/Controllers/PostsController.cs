@@ -24,7 +24,7 @@ public class PostsController : Controller
     int totalPosts = await query.CountAsync();
 
     var posts = await query
-        .OrderByDescending(p => p.PublishedAt)
+        .OrderBy(p => p.Id)
         .Skip((page - 1) * pageSize)
         .Take(pageSize)
         .ToListAsync();
