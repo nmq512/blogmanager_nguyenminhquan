@@ -10,11 +10,37 @@ public class PostsController : Controller
     {
         _context = context;
     }
-    public async Task<IActionResult> Index()
+    public async Task<IActionResult> Index(string? search, int page = 1)
+{
+    int pageSize = 5;
+
+    var query = _context.Posts.AsQueryable();
+
+    if (!string.IsNullOrWhiteSpace(search))
     {
-        var posts = await _context.Posts.OrderByDescending(p => p.PublishedAt).ToListAsync();
-        return View(posts);
+        query = query.Where(p => p.Title.Contains(search));
     }
+
+    int totalPosts = await query.CountAsync();
+
+    var posts = await query
+        .OrderByDescending(p => p.PublishedAt)
+        .Skip((page - 1) * pageSize)
+        .Take(pageSize)
+        .ToListAsync();
+
+    PostListViewModel model = new PostListViewModel
+    {
+        Posts = posts,
+        Search = search,
+        CurrentPage = page,
+        PageSize = pageSize,
+        TotalPosts = totalPosts,
+        TotalPages = (int)Math.Ceiling((double)totalPosts / pageSize)
+    };
+
+    return View(model);
+}
     public async Task<IActionResult> Details(int id)
     {
         var post = await _context.Posts.FindAsync(id);

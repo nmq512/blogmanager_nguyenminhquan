@@ -47,6 +47,11 @@ namespace Blogmanager_NguyenMinhQuan.Data
                     ViewCount = 60
                 }
             );
+            builder.Entity<Category>().HasData(
+                new Category { Id = 1, Name = "Công nghệ" },
+                new Category { Id = 2, Name = "Lập trình" },
+                new Category { Id = 3, Name = "Web Development" }
+            );
         }
     }
 }

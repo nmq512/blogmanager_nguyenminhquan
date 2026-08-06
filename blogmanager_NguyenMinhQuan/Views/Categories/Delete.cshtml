@@ -1,0 +1,58 @@
+@model blogmanager_NguyenMinhQuan.Models.Category
+
+@{
+    ViewData["Title"] = "Xóa danh mục";
+}
+
+<div class="container mt-4">
+
+    <div class="card border-danger shadow">
+
+        <div class="card-header bg-danger text-white">
+            <h3>
+                <i class="bi bi-trash-fill"></i>
+                Xóa danh mục
+            </h3>
+        </div>
+
+        <div class="card-body">
+
+            <div class="alert alert-warning">
+                Bạn có chắc chắn muốn xóa danh mục này không?
+            </div>
+
+            <table class="table table-bordered">
+
+                <tr>
+                    <th style="width:180px">ID</th>
+                    <td>@Model.Id</td>
+                </tr>
+
+                <tr>
+                    <th>Tên danh mục</th>
+                    <td>@Model.Name</td>
+                </tr>
+
+            </table>
+
+            <form asp-action="Delete" method="post">
+
+                <input type="hidden" asp-for="Id" />
+
+                <button type="submit" class="btn btn-danger">
+                    <i class="bi bi-trash"></i>
+                    Xóa
+                </button>
+
+                <a asp-action="Index" class="btn btn-secondary">
+                    <i class="bi bi-arrow-left"></i>
+                    Hủy
+                </a>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>

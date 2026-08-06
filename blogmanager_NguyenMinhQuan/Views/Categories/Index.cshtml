@@ -1,38 +1,56 @@
-@model PostListViewModel
-<h1>Danh sách bài viết</h1>
-<a asp-action="Create" class="btn btn-primary mb-3">Tạo bài viết mới</a>
+@model CategoryListViewModel
+
+@{
+    ViewData["Title"] = "Danh sách danh mục";
+}
+
+<h1>Danh sách danh mục</h1>
+
+<a asp-action="Create" class="btn btn-primary mb-3">
+    Tạo danh mục mới
+</a>
+
 <form asp-action="Index" method="get" class="row g-2 mb-3">
     <div class="col-auto">
-        <input name="search" value="@Context.Request.Query["search"]" class="form-control" placeholder="Tìm kiếm bài viết..." />
+        <input name="search"
+               value="@Model.Search"
+               class="form-control"
+               placeholder="Tìm kiếm danh mục..." />
     </div>
+
     <div class="col-auto">
-        <button type="submit" class="btn btn-primary">Tìm kiếm</button>
+        <button type="submit" class="btn btn-primary">
+            Tìm kiếm
+        </button>
     </div>
 </form>
-@if (!Model.Posts.Any())
+
+@if (!Model.Categories.Any())
 {
-    <p>Không có bài viết nào.</p>
+    <div class="alert alert-warning">
+        Không có danh mục nào.
+    </div>
 }
 else
 {
-    <table class="table table-striped">
-    <thead>
-        <tr>
-            <th>Tiêu đề</th>
-            <th>Tác giả</th>
-            <th>Ngày xuất bản</th>
-            <th>Trạng thái</th>
-            <th>Hành động</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var baiviet in Model.Posts)
-        {
-            <partial name="_PostRow" model="baiviet" />
-        }
-    </tbody>
+    <table class="table table-striped table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Tên danh mục</th>
+                <th width="220">Hành động</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var category in Model.Categories)
+            {
+                <partial name="_CategoryRow" model="category" />
+            }
+        </tbody>
     </table>
 }
+
 <nav>
     <ul class="pagination justify-content-center">
 
@@ -78,4 +96,3 @@ else
 
     </ul>
 </nav>
-
