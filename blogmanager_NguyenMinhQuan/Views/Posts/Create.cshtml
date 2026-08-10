@@ -44,7 +44,13 @@
                            placeholder="Nhập tên tác giả..." />
                     <span asp-validation-for="Author" class="text-danger"></span>
                 </div>
+                <select asp-for="CategoryId"
+                    asp-items="@(new SelectList(ViewBag.Categories, "Id", "Name"))"
+                    class="form-select">
 
+                    <option value="">-- Chọn chuyên mục --</option>
+
+                </select>
                 <div class="mb-3">
                     <label asp-for="PublishedAt" class="form-label"></label>
                     <input asp-for="PublishedAt"

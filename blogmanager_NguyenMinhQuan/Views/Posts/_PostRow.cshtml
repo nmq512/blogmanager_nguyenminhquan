@@ -11,6 +11,21 @@
     <td>@Model.PublishedAt.ToString("dd/MM/yyyy")</td>
 
     <td>
+        @if (Model.Category != null)
+        {
+            <span class="badge bg-primary">
+                @Model.Category.Name
+            </span>
+        }
+        else
+        {
+            <span class="badge bg-secondary">
+                Chưa có danh mục
+            </span>
+        }
+    </td>
+
+    <td>
         @if (Model.IsPublished)
         {
             <span class="badge bg-success">

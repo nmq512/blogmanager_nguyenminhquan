@@ -17,6 +17,53 @@ namespace blogmanager_NguyenMinhQuan.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "10.0.10");
 
+            modelBuilder.Entity("PostTag", b =>
+                {
+                    b.Property<int>("PostsId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("TagsId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("PostsId", "TagsId");
+
+                    b.HasIndex("TagsId");
+
+                    b.ToTable("PostTag");
+                });
+
+            modelBuilder.Entity("Tag", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Tags");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "ASP.NET Core"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Entity Framework"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Razor"
+                        });
+                });
+
             modelBuilder.Entity("blogmanager_NguyenMinhQuan.Models.Category", b =>
                 {
                     b.Property<int>("Id")
@@ -46,6 +93,11 @@ namespace blogmanager_NguyenMinhQuan.Migrations
                         {
                             Id = 3,
                             Name = "Web Development"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "Database"
                         });
                 });
 
@@ -58,6 +110,9 @@ namespace blogmanager_NguyenMinhQuan.Migrations
                     b.Property<string>("Author")
                         .IsRequired()
                         .HasColumnType("TEXT");
+
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Content")
                         .IsRequired()
@@ -79,6 +134,8 @@ namespace blogmanager_NguyenMinhQuan.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CategoryId");
+
                     b.ToTable("Posts");
 
                     b.HasData(
@@ -86,6 +143,7 @@ namespace blogmanager_NguyenMinhQuan.Migrations
                         {
                             Id = 1,
                             Author = "Nguyễn Trung",
+                            CategoryId = 1,
                             Content = "Đây là bài viết đầu tiên.",
                             IsPublished = true,
                             PublishedAt = new DateTime(2026, 8, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -96,6 +154,7 @@ namespace blogmanager_NguyenMinhQuan.Migrations
                         {
                             Id = 2,
                             Author = "Nguyễn Minh Quân",
+                            CategoryId = 2,
                             Content = "Làm quen với Migration.",
                             IsPublished = true,
                             PublishedAt = new DateTime(2026, 8, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -106,12 +165,44 @@ namespace blogmanager_NguyenMinhQuan.Migrations
                         {
                             Id = 3,
                             Author = "Hồng Trung Việt",
+                            CategoryId = 3,
                             Content = "Sử dụng Razor để hiển thị dữ liệu.",
                             IsPublished = false,
                             PublishedAt = new DateTime(2026, 8, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Title = "Razor View",
                             ViewCount = 60
                         });
+                });
+
+            modelBuilder.Entity("PostTag", b =>
+                {
+                    b.HasOne("blogmanager_NguyenMinhQuan.Models.Post", null)
+                        .WithMany()
+                        .HasForeignKey("PostsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Tag", null)
+                        .WithMany()
+                        .HasForeignKey("TagsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("blogmanager_NguyenMinhQuan.Models.Post", b =>
+                {
+                    b.HasOne("blogmanager_NguyenMinhQuan.Models.Category", "Category")
+                        .WithMany("Posts")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Category");
+                });
+
+            modelBuilder.Entity("blogmanager_NguyenMinhQuan.Models.Category", b =>
+                {
+                    b.Navigation("Posts");
                 });
 #pragma warning restore 612, 618
         }

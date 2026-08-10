@@ -19,5 +19,8 @@ namespace blogmanager_NguyenMinhQuan.Models
         public int ViewCount { get; set; }
         public string NhanPhoBien => ViewCount >= 100 ? "Phổ biến" : "Thường";
         public string MoTaNgan() => $"{Title} ({PublishedAt:dd/MM/yyyy})";
+        public int CategoryId { get; set; }
+        public Category? Category { get; set; }
+        public List<Tag> Tags { get; set; } = new();
     }
 }
