@@ -2,7 +2,6 @@
 @model Post
 
 <tr>
-    <td>@Model.Id</td>
 
     <td>@Model.Title</td>
 
@@ -24,6 +23,24 @@
             </span>
         }
     </td>
+
+    <td>
+    @if (Model.Tags != null && Model.Tags.Any())
+    {
+        foreach (var tag in Model.Tags)
+        {
+            <span class="badge bg-success me-1 mb-1">
+                @tag.Name
+            </span>
+        }
+    }
+    else
+    {
+        <span class="badge bg-secondary">
+            Chưa có Tag
+        </span>
+    }
+</td>
 
     <td>
         @if (Model.IsPublished)

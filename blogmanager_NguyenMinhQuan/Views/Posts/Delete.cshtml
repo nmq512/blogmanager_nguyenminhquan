@@ -45,6 +45,45 @@
                 </tr>
 
                 <tr>
+    <th>Danh mục</th>
+    <td>
+        @if (Model.Category != null)
+        {
+            <span class="badge bg-primary">
+                @Model.Category.Name
+            </span>
+        }
+        else
+        {
+            <span class="badge bg-secondary">
+                Chưa có danh mục
+            </span>
+        }
+    </td>
+</tr>
+
+<tr>
+    <th>Tag</th>
+    <td>
+        @if (Model.Tags != null && Model.Tags.Any())
+        {
+            foreach (var tag in Model.Tags)
+            {
+                <span class="badge bg-success me-1 mb-1">
+                    @tag.Name
+                </span>
+            }
+        }
+        else
+        {
+            <span class="badge bg-secondary">
+                Chưa có Tag
+            </span>
+        }
+    </td>
+</tr>
+
+                <tr>
                     <th>Ngày đăng</th>
                     <td>@Model.PublishedAt.ToString("dd/MM/yyyy")</td>
                 </tr>

@@ -1,0 +1,62 @@
+@model Tag
+
+@{
+ViewData["Title"] = "Chi tiết Tag";
+}
+
+<div class="container mt-4">
+
+<div class="card shadow">
+
+    <div class="card-header bg-info text-white">
+        <h3>
+            <i class="bi bi-file-earmark-text"></i>
+            Chi tiết Tag
+        </h3>
+    </div>
+
+    <div class="card-body">
+
+        <table class="table table-bordered">
+
+            <tr>
+                <th style="width:200px">ID</th>
+                <td>@Model.Id</td>
+            </tr>
+
+            <tr>
+                <th>Tên Tag</th>
+                <td>@Model.Name</td>
+            </tr>
+
+        </table>
+
+        <div class="mt-3">
+
+            <a asp-action="Edit"
+               asp-route-id="@Model.Id"
+               class="btn btn-warning">
+                <i class="bi bi-pencil-square"></i>
+                Chỉnh sửa
+            </a>
+
+            <a asp-action="Delete"
+               asp-route-id="@Model.Id"
+               class="btn btn-danger">
+                <i class="bi bi-trash"></i>
+                Xóa
+            </a>
+
+            <a asp-action="Index"
+               class="btn btn-secondary">
+                <i class="bi bi-arrow-left"></i>
+                Quay lại
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+</div>

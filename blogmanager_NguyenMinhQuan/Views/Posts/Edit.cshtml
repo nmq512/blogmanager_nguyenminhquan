@@ -1,4 +1,4 @@
-@model blogmanager_NguyenMinhQuan.Models.Post
+@model blogmanager_NguyenMinhQuan.ViewModels.PostEditViewModel
 
 @{
     ViewData["Title"] = "Chỉnh sửa bài viết";
@@ -38,23 +38,43 @@
                     <span asp-validation-for="Content" class="text-danger"></span>
                 </div>
                 <div class="mb-3">
+    <label asp-for="CategoryId" class="form-label">
+        Danh mục
+    </label>
 
-                    <label asp-for="CategoryId" class="form-label">
-                        Danh mục
-                    </label>
+    <select asp-for="CategoryId"
+            asp-items="@(new SelectList(Model.Categories, "Id", "Name"))"
+            class="form-select">
+        <option value="">-- Chọn danh mục --</option>
+    </select>
 
-                    <select asp-for="CategoryId"
-                        asp-items="@(new SelectList(ViewBag.Categories, "Id", "Name"))"
-                        class="form-select">
+    <span asp-validation-for="CategoryId"
+          class="text-danger"></span>
+</div>
 
-                    <option value="">-- Chọn danh mục --</option>
+<div class="mb-3">
+    <label asp-for="TagIds" class="form-label">
+        Tag
+    </label>
 
-                    </select>
+    <select asp-for="TagIds"
+            asp-items="@(new MultiSelectList(
+                Model.Tags,
+                "Id",
+                "Name",
+                Model.TagIds
+            ))"
+            class="form-select"
+            multiple>
+    </select>
 
-                    <span asp-validation-for="CategoryId"
-                        class="text-danger"></span>
+    <div class="form-text">
+        Giữ phím Ctrl để chọn nhiều Tag.
+    </div>
 
-                </div>
+    <span asp-validation-for="TagIds"
+          class="text-danger"></span>
+</div>
 
                 <div class="mb-3">
                     <label asp-for="Author" class="form-label"></label>
